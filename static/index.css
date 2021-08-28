@@ -1,0 +1,74 @@
+@import url("https://outfitio.github.io/Outfit-Fonts/outfit-fonts.css");
+@font-face {
+    font-family: "outfit-variable";
+    src: url("https://outfitio.github.io/Outfit-Fonts/fonts/variable/Outfit.ttf");
+}
+
+:root {
+    --main-bg-color: #1a1616;
+}
+
+body {
+    background-color: var(--main-bg-color);
+    color: #ffffff;
+    transition: all 1s ease;
+}
+
+
+h1 .char {
+	--delay: calc((var(--char-index) + 1) * 400ms);
+	animation: breathe 4000ms infinite both;
+	animation-delay: var(--delay);
+}
+
+@keyframes breathe {
+	0% {
+		font-variation-settings: 'wght' 100, 'wdth' 85;
+		font-size: 4rem;
+	}
+	60% {
+		font-variation-settings: 'wght' 700, 'wdth' 100;
+		font-size: 4.4rem;
+	}
+	100% {
+		font-variation-settings: 'wght' 100, 'wdth' 85;
+		font-size: 4rem;
+	}
+}
+
+* {
+    font-family: outfit;
+}
+
+h1 {
+    font-weight:900;
+    font-size: 3rem;
+    -webkit-text-stroke-color: transparent;
+    -webkit-text-stroke-width: calc(1em / 16);
+}
+
+a {color: inherit;}
+a:hover {
+    color:inherit;
+    text-decoration: none;
+}
+
+.card{
+    background-color: transparent;
+    border:  double 4px white;
+    border-radius: 20px;
+}
+
+.card:hover{
+    --webkit-transition: all 0.5s ease-in-out;
+    transition:         all 0.5s ease-in-out;
+
+    border: double 4px transparent;
+    border-radius: 25px;
+    background-image: linear-gradient(var(--main-bg-color), var(--main-bg-color)), 
+                    linear-gradient(to right, green, gold);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+
+}
+
