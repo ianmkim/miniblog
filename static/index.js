@@ -24,6 +24,9 @@ $.ajax({
             posts.forEach(post => {
                 $("#results").append(create_item(post.id, post.title, post.author, post.createdAt))
             })
+            if(posts.length == 0){
+                $("#results").append("No posts at the moment");
+            }
         }
         $("#spinner").hide()
     }, 

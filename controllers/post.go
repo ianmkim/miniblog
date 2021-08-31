@@ -13,6 +13,11 @@ import (
     "go.mongodb.org/mongo-driver/bson"
     "go.mongodb.org/mongo-driver/bson/primitive"
     "go.mongodb.org/mongo-driver/mongo"
+    
+    // HTML sanitizer
+    "github.com/microcosm-cc/bluemonday"
+    // Markdown to HTML renderer
+    "github.com/gomarkdown/markdown"
 )
 
 func GetPosts(c *fiber.Ctx) error {
@@ -59,6 +64,9 @@ func CreatePost(c *fiber.Ctx) error {
         })
     }
 
+    unsafe_html := markdown.ToHTML([]byte(*data.Content), nil, nil)
+    safe_html := string(bluemonday.UGCPolicy().SanitizeBytes(unsafe_html))
+    data.Content = &safe_html
     data.ID = nil
     data.CreatedAt = time.Now()
     data.UpdatedAt = time.Now()

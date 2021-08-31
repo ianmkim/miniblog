@@ -14,7 +14,7 @@ body {
     transition: all 1s ease;
 }
 
-h1 {
+.heading{
     -webkit-background-clip: text;
     background-clip: text;
     background-image: -webkit-gradient(linear, left top, right top, from(#ffffff), color-stop(#ffffff), color-stop(#d1cdff), to(#6f80c2));
@@ -24,6 +24,8 @@ h1 {
     color: var(--main-bg-color);
     -webkit-text-stroke-color: transparent;
     -webkit-text-stroke-width: calc(1em / 7);
+    font-size: 3rem;
+    font-weight:900;
 }
 
 h1 .char {
@@ -49,11 +51,6 @@ h1 .char {
 
 * {
     font-family: outfit;
-}
-
-h1 {
-    font-weight:900;
-    font-size: 3rem;
 }
 
 a {color: inherit;}
