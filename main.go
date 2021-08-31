@@ -16,6 +16,7 @@ import (
 
 func setupRoutes(app *fiber.App){
     app.Get("/", controllers.GetIndex)
+    app.Get("/d/:id", controllers.GetDetails)
 
     api := app.Group("/api")
     routes.PostRoutes(api.Group("/posts"))

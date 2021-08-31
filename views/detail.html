@@ -6,26 +6,44 @@
 </br>
 </br>
 </br>
-<h1 id="breathing" data-splitting style="margin-bottom:0px; padding-bottom:0px;">Stumbling Blog</h1>
-<h4 style="margin-top:0px; padding-top:0px;">by <a style="text-decoration:underline;" href="https://ianmkim.com">parvusvox</a></h4>
+<button onclick="window.history.back()"><h2 style="font-size:3rem;"> &#8592; </h2></button>
+<h1 id="title" style="margin-bottom:0px; padding-bottom:0px;">Loading...</h1>
+<h4 id="author" style="margin-top:0px; padding-top:0px;"></h4>
+<h5 id="date" style="margin-top:0px; padding-top:0px;"></h5>
 
 </br>
 </br>
 
-<a href="https://google.com">
-<div class="card">
-    <div class="card-body">
-        <h3>Open source is evidence that communism works</h3>
-        <h5>parvusvox</h5>
-        <h6>Aug 28. 2021</h6>
-    </div>
+<div id="spinner">
+    <!-- Loading square for squar.red network -->
+    <span class="loader"><span class="loader-inner"></span></span>
 </div>
-</a>
+
+<div id="content">
+
+</div>
 
 {% endblock %}
 {% block scripts %}
 <script>
-    Splitting()
+$.ajax({
+    url: "/api/posts/{{id}}",
+    type: "get",
+    beforeSend: function() {
+        $("#spinner").show();
+    },
+    success: function(resp){
+        if(resp["success"]){
+            console.log(resp);
+            let post = resp["data"]["post"]
+            $("#title").html(post["title"])
+            $("#author").html(post["author"])
+            $("#content").html(post["content"])
+            $("#date").html(post["createdAt"].slice(0, 10))
+            $("#spinner").hide()
+        }
+    }
+})
 </script>
 {% endblock %}
 
