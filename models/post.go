@@ -10,7 +10,7 @@ type Post struct {
     Author *string `json:"author"`
     Tags *string `json:"tags"`
     Content *string `json:"content"`
-    read int `json:"read"`
+    Read int `json:"read"`
     CreatedAt time.Time `json:"createdAt"`
     UpdatedAt time.Time `json:"updatedAt"`
 }

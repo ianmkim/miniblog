@@ -16,14 +16,14 @@ import (
 )
 
 func GetPosts(c *fiber.Ctx) error {
-    postCollection := config.MI.DB.Collection(os.Getenv("POST_COLLECTION"))
+    postCollection := config.MI.DB.Collection(os.Getenv("POST_COLLECTIONS"))
     query := bson.D {{}}
     cursor, err := postCollection.Find(c.Context(), query)
 
     if err != nil {
         return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map {
             "success": false, 
-            "message": "Something went wrong",
+            "message": "Something went wrong while finding the collection",
             "error": err.Error(),
         })
     }
@@ -47,7 +47,7 @@ func GetPosts(c *fiber.Ctx) error {
 }
 
 func CreatePost(c *fiber.Ctx) error {
-    postCollection := config.MI.DB.Collection(os.Getenv("POST_COLLECTION"))
+    postCollection := config.MI.DB.Collection(os.Getenv("POST_COLLECTIONS"))
     data := new(models.Post)
 
     err := c.BodyParser(&data)
@@ -62,6 +62,7 @@ func CreatePost(c *fiber.Ctx) error {
     data.ID = nil
     data.CreatedAt = time.Now()
     data.UpdatedAt = time.Now()
+    data.Read = 0
 
     result , err := postCollection.InsertOne(c.Context(), data)
     if err != nil {
@@ -85,7 +86,7 @@ func CreatePost(c *fiber.Ctx) error {
 }
 
 func GetPost(c *fiber.Ctx) error {
-    postCollection := config.MI.DB.Collection(os.Getenv("POST_COLLECTION"))
+    postCollection := config.MI.DB.Collection(os.Getenv("POST_COLLECTIONS"))
     paramId := c.Params("id")
     id, err := primitive.ObjectIDFromHex(paramId)
 
@@ -117,7 +118,7 @@ func GetPost(c *fiber.Ctx) error {
 }
 
 func DeletePost(c *fiber.Ctx) error {
-    postCollection := config.MI.DB.Collection(os.Getenv("POST_COLLECTION"))
+    postCollection := config.MI.DB.Collection(os.Getenv("POST_COLLECTIONS"))
     paramId := c.Params("id")
     id, err := primitive.ObjectIDFromHex(paramId)
 

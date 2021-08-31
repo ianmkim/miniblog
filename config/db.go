@@ -20,16 +20,10 @@ type MongoInstance struct {
 var MI MongoInstance
 
 func ConnectDB() {
-    client, err := mongo.NewClient(options.Client().ApplyURI(os.Getenv("MONGO_URI")))
-
-    if err != nil {
-        log.Fatal(err)
-    }
-
     ctx, cancel := context.WithTimeout(context.Background(), 10 * time.Second)
+    client, err := mongo.Connect(ctx, options.Client().ApplyURI(os.Getenv("MONGO_URI")))
     defer cancel()
 
-    err = client.Connect(ctx)
     if err != nil {
         log.Fatal(err)
     }
@@ -39,11 +33,13 @@ func ConnectDB() {
         log.Fatal(err)
     }
 
-    fmt.Println("Database connected!")
+
     MI = MongoInstance {
         Client: client,
         DB: client.Database(os.Getenv("DATABASE_NAME")),
     }
+
+    fmt.Println("Database connected!")
 }
 
 
