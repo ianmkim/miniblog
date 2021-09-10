@@ -77,7 +77,7 @@ func CreatePost(c *fiber.Ctx) error {
         return c.Status(fiber.StatusBadRequest).JSON(fiber.Map {
             "success": false,
             "message": "Cannot insert post",
-            "error": err, 
+            "error": err,
         })
     }
 

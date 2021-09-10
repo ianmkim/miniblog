@@ -6,8 +6,9 @@
 </br>
 </br>
 </br>
-<h1 class="heading" id="breathing" data-splitting style="margin-bottom:0px; padding-bottom:0px;">The Stumbling Blog</h1>
-<h4 style="margin-top:0px; padding-top:0px;">by <a style="text-decoration:underline;" href="https://ianmkim.com">parvusvox</a></h4>
+<canvas style="width:200px; height:200px;" id="graphic"></canvas>
+<h1 class="heading" id="" style="margin-bottom:0px; padding-bottom:0px;">The Informed Technologist</h1>
+<h4 style="margin-top:0px; padding-top:0px;">by <a style="text-decoration:underline;" href="submit">anonymous contributors & editors</a></h4>
 
 </br>
 </br>
@@ -17,11 +18,12 @@
     <span class="loader"><span class="loader-inner"></span></span>
 </div>
 <div id="results">
-    
+
 </div>
 
 {% endblock %}
 {% block scripts %}
+<script src="https://raw.githack.com/strangerintheq/rgba/0.0.5/rgba.js"></script>
 <script src="/static/index.js"></script>
 <script>
     Splitting()

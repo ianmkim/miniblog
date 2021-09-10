@@ -1,11 +1,16 @@
-@import url("https://outfitio.github.io/Outfit-Fonts/outfit-fonts.css");
+
 @font-face {
-    font-family: "outfit-variable";
-    src: url("https://outfitio.github.io/Outfit-Fonts/fonts/variable/Outfit.ttf");
+  font-family: 'productsans';
+  src: URL('/static/productsans.ttf') format('truetype');
+}
+
+* {
+  font-family: 'productsans';
 }
 
 :root {
     --main-bg-color: #1a1616;
+    --main-bg-color: #000;
 }
 
 body {
@@ -20,13 +25,12 @@ body {
     background-image: -webkit-gradient(linear, left top, right top, from(#ffffff), color-stop(#ffffff), color-stop(#d1cdff), to(#6f80c2));
     background-image: -o-linear-gradient(left, #ffffff, #e0e0fe, #d1cdff, #6f80c2);
     background-image: linear-gradient(to right, #ffffff, #e0e0fe, #d1cdff, #6f80c2);
-    color: #000119;
-    color: var(--main-bg-color);
     -webkit-text-stroke-color: transparent;
-    -webkit-text-stroke-width: calc(1em / 7);
-    font-size: 3rem;
+    -webkit-text-stroke-width: calc(1em / 25);
+    font-size: 3.5rem;
     font-weight:900;
 }
+
 
 h1 .char {
     --delay: calc((var(--char-index) + 1) * 400ms);
@@ -49,9 +53,7 @@ h1 .char {
 	}
 }
 
-* {
-    font-family: outfit;
-}
+
 
 a {color: inherit;}
 a:hover {
@@ -61,16 +63,13 @@ a:hover {
 
 .card{
     background-color: transparent;
-    border:  double 4px white;
-    border-radius: 20px;
     --webkit-transition: all 0.25s ease;
     transition:         all 0.25s ease;
-
-
 }
 
-.card:hover{    
+.card:hover{
     border: double 4px #e0e0fe;
+    border-radius: 20px;
 }
 
 
@@ -97,19 +96,19 @@ a:hover {
   0% {
     transform: rotate(0deg);
   }
-  
+
   25% {
     transform: rotate(180deg);
   }
-  
+
   50% {
     transform: rotate(180deg);
   }
-  
+
   75% {
     transform: rotate(360deg);
   }
-  
+
   100% {
     transform: rotate(360deg);
   }
@@ -119,19 +118,19 @@ a:hover {
   0% {
     height: 0%;
   }
-  
+
   25% {
     height: 0%;
   }
-  
+
   50% {
     height: 100%;
   }
-  
+
   75% {
     height: 100%;
   }
-  
+
   100% {
     height: 0%;
   }
