@@ -13,6 +13,8 @@ import (
 	"github.com/parvusvox/miniblog/config"
 	"github.com/parvusvox/miniblog/controllers"
 	"github.com/parvusvox/miniblog/routes"
+
+	jwtware "github.com/gofiber/jwt/v2"
 )
 
 func setupRoutes(app *fiber.App) {
@@ -23,8 +25,16 @@ func setupRoutes(app *fiber.App) {
 		return c.Render("pol_post", fiber.Map{})
 	})
 
+	app.Post("/login", controllers.Login)
+	app.Post("/hpr", controllers.HPR)
+
 	api := app.Group("/api")
-	routes.PostRoutes(api.Group("/posts"))
+	routes.PostRoutesClear(api.Group("/posts"))
+
+	app.Use(jwtware.New(jwtware.Config{
+		SigningKey: []byte(os.Getenv("SECRET")),
+	}))
+	routes.PostRoutesProtected(api.Group("/posts"))
 }
 
 func setupUtilFuncs(engine *django.Engine) {
