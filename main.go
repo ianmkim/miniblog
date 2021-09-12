@@ -17,6 +17,17 @@ import (
 	jwtware "github.com/gofiber/jwt/v2"
 )
 
+func ErrorHandler(ctx *fiber.Ctx, err error) error {
+	code := fiber.StatusNotFound
+
+	if e, ok := err.(*fiber.Error); ok {
+		code = e.Code
+	}
+
+	ctx.Render("error", fiber.Map{"code": code})
+	return nil
+}
+
 func setupRoutes(app *fiber.App) {
 	app.Get("/", controllers.GetIndex)
 	app.Get("/d/:id", controllers.GetDetails)
@@ -32,7 +43,8 @@ func setupRoutes(app *fiber.App) {
 	routes.PostRoutesClear(api.Group("/posts"))
 
 	app.Use(jwtware.New(jwtware.Config{
-		SigningKey: []byte(os.Getenv("SECRET")),
+		SigningKey:   []byte(os.Getenv("SECRET")),
+		ErrorHandler: ErrorHandler,
 	}))
 	routes.PostRoutesProtected(api.Group("/posts"))
 }

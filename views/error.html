@@ -1,0 +1,24 @@
+{% extends "template.html"%}
+{% block content %}
+</br>
+</br>
+</br>
+</br>
+</br>
+</br>
+<canvas style="width:200px; height:200px;" id="graphic"></canvas>
+<a href="/"><h1 class="heading" id="" style="margin-bottom:0px; padding-bottom:0px;">Error {{ code }}</h1></a>
+<h4 style="margin-top:0px; padding-top:0px;"><a style="text-decoration:underline;" href="/">return to main page</a></h4>
+
+</br>
+</br>
+
+{% endblock %}
+{% block scripts %}
+<script src="https://raw.githack.com/strangerintheq/rgba/0.0.5/rgba.js"></script>
+<script src="/static/index.js"></script>
+<script>
+    Splitting()
+</script>
+{% endblock %}
+
