@@ -9,8 +9,9 @@ func GetIndex(c *fiber.Ctx) error {
 }
 
 func GetDetails(c *fiber.Ctx) error {
+	paramId := c.Params("id")
 	return c.Render("detail", fiber.Map{
-		"id": c.Params("id"),
+		"id": paramId,
 	})
 }
 

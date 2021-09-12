@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"os"
 	"strings"
 
 	"github.com/gofiber/fiber/v2"
@@ -18,6 +19,9 @@ func setupRoutes(app *fiber.App) {
 	app.Get("/", controllers.GetIndex)
 	app.Get("/d/:id", controllers.GetDetails)
 	app.Get("/submit", controllers.GetSubmit)
+	app.Get("/article_test", func(c *fiber.Ctx) error {
+		return c.Render("pol_post", fiber.Map{})
+	})
 
 	api := app.Group("/api")
 	routes.PostRoutes(api.Group("/posts"))
@@ -53,7 +57,14 @@ func main() {
 
 	setupRoutes(app)
 
-	err = app.Listen(":3000")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = ":3000"
+	} else {
+		port = ":" + port
+	}
+
+	err = app.Listen(port)
 	if err != nil {
 		panic(err)
 	}

@@ -36,6 +36,10 @@ $.ajax({
         if(resp["success"]){
             console.log(resp);
             let post = resp["data"]["post"]
+            if(post["tags"] == "politics") {
+                var post_el = document.getElementById("content");
+                post_el.style.fontFamily = "monospace";
+            }
             $("#title").html(post["title"])
             $("#author").html(post["author"])
             $("#content").html(post["content"])
